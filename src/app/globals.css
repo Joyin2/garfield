@@ -27,12 +27,7 @@
   --gold-900: #78350f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Removed dark mode media query to ensure light theme only */
 
 body {
   color: var(--foreground);
