@@ -12,9 +12,6 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       <HeroSection />
-      <AboutCompanySection />
-      <AboutJohnSection />
-      <JohnGarfieldBioSection />
       <ServicesSection />
       <TestimonialsSection />
       <CTASection />

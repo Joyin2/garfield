@@ -48,29 +48,7 @@ const Navbar = () => {
             <NavLink href="/" label="Home" />
             
             {/* About Dropdown - Modified to use hover */}
-            <div 
-              ref={aboutDropdownRef} 
-              className="relative group"
-              onMouseEnter={() => setActiveDropdown('about')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <div 
-                className="relative font-medium text-gray-800 hover:text-primary-600 transition-colors duration-300 group flex items-center cursor-pointer"
-              >
-                About Us
-                <svg className="ml-1 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
-              </div>
-              
-              <div
-                className={`absolute left-0 mt-0 pt-1 w-48 bg-white rounded-lg shadow-lg py-2 z-20 transition-opacity duration-200 ${activeDropdown === 'about' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
-              >
-                <DropdownLink href="/about" label="About Company" onClick={() => {}} />
-                <DropdownLink href="/about/principals" label="Bios of Principals" onClick={() => {}} />
-              </div>
-            </div>
+            <NavLink href="/about" label="About Us" />
             
             {/* Services Dropdown - Modified to use hover */}
             <div 
@@ -99,7 +77,6 @@ const Navbar = () => {
             </div>
             
             <NavLink href="/resources" label="Resources" />
-            <NavLink href="/news" label="Industry News" />
             <NavLink href="/contact" label="Contact Us" />
             
             <Link
