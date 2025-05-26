@@ -1,12 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, OrbitControls, PresentationControls } from '@react-three/drei';
+import {  PresentationControls } from '@react-three/drei';
 import { motion } from 'framer-motion';
+import { Group } from 'three';
 
 const CoinStack = () => {
-  const meshRef = useRef();
+  const meshRef = useRef<Group>(null);
   
   useFrame((state) => {
     if (meshRef.current) {
@@ -58,7 +59,7 @@ const FinancialModel = () => {
           polar={[-Math.PI / 4, Math.PI / 4]}
           azimuth={[-Math.PI / 4, Math.PI / 4]}
           config={{ mass: 2, tension: 400 }}
-          snap={{ mass: 4, tension: 400 }}
+          snap={true}
         >
           <CoinStack />
         </PresentationControls>

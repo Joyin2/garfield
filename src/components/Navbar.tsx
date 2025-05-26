@@ -65,7 +65,7 @@ const Navbar = () => {
               </div>
               
               <div
-                className={`absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-20 transition-opacity duration-200 ${activeDropdown === 'about' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                className={`absolute left-0 mt-0 pt-1 w-48 bg-white rounded-lg shadow-lg py-2 z-20 transition-opacity duration-200 ${activeDropdown === 'about' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
               >
                 <DropdownLink href="/about" label="About Company" onClick={() => {}} />
                 <DropdownLink href="/about/principals" label="Bios of Principals" onClick={() => {}} />
@@ -90,7 +90,7 @@ const Navbar = () => {
               </div>
               
               <div
-                className={`absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-20 transition-opacity duration-200 ${activeDropdown === 'services' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                className={`absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-lg py-2 z-20 transition-opacity duration-200 ${activeDropdown === 'services' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
               >
                 <DropdownLink href="/services/financial-planning" label="Financial Planning" onClick={() => {}} />
                 <DropdownLink href="/services/retirement-planning" label="Retirement Planning" onClick={() => {}} />
