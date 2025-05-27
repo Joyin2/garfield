@@ -11,31 +11,21 @@ export default function Footer() {
     {
       title: "Services",
       links: [
-        { name: "Financial Planning", href: "/services#financial-planning" },
-        { name: "Wealth Management", href: "/services#wealth-management" },
-        { name: "Retirement Planning", href: "/services#retirement-planning" },
-        { name: "Estate Planning", href: "/services#estate-planning" },
-        { name: "Tax Strategies", href: "/services#tax-strategies" }
+        { name: "Services", href: "/services" },
+       
       ]
     },
     {
       title: "Company",
       links: [
         { name: "About Us", href: "/about" },
-        { name: "Our Team", href: "/team" },
-        { name: "Careers", href: "/careers" },
-        { name: "News", href: "/news" },
         { name: "Contact", href: "/contact" }
       ]
     },
     {
       title: "Resources",
       links: [
-        { name: "Blog", href: "/blog" },
-        { name: "Calculators", href: "/resources/calculators" },
-        { name: "FAQ", href: "/faq" },
-        { name: "Client Portal", href: "https://client.garfieldfinancial.com" },
-        { name: "Events", href: "/events" }
+        { name: "Resources", href: "/resources" },
       ]
     }
   ];

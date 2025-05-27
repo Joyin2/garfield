@@ -299,7 +299,7 @@ export default function AboutPage() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Our Mission & Vision</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-primary-600 mb-8 rounded-full"></div>
-              
+
               <div className="space-y-6 text-lg text-gray-600">
                 <p>
                   At Garfield and Davis Financial, we believe that financial security is the foundation for lasting peace of mind. With a team of seasoned advisors and a client-first philosophy, we specialize in crafting tailored financial strategies that align with your life goals—whether you're planning for retirement, growing your wealth, or securing your family's future.
@@ -311,7 +311,7 @@ export default function AboutPage() {
                   We take pride in building trust through transparency, integrity, and a steadfast commitment to your success. At Garfield and Davis Financial, your future isn't just a projection—it's a plan with purpose.
                 </p>
               </div>
-              
+
               <div className="mt-10 grid grid-cols-2 gap-6">
                 <div className="flex items-center space-x-3">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
@@ -321,7 +321,7 @@ export default function AboutPage() {
                   </div>
                   <span className="font-medium text-gray-700">Personalized Planning</span>
                 </div>
-                
+
                 <div className="flex items-center space-x-3">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
                     <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -362,22 +362,22 @@ export default function AboutPage() {
                 {/* Background decorative elements */}
                 <div className="absolute -top-6 -right-6 w-64 h-64 bg-primary-100 rounded-full opacity-50 blur-xl"></div>
                 <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-primary-200 rounded-full opacity-30 blur-xl"></div>
-                
+
                 {/* Interactive financial poster - adjusted height for container */}
                 <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
                   {/* Removed aspect ratio div and replaced with full height container */}
                   <div className="relative h-[450px]">
                     {/* Background gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-primary-100"></div>
-                    
+
                     {/* Grid pattern overlay */}
                     <div className="absolute inset-0 bg-grid-pattern opacity-30"></div>
-                    
+
                     {/* Rest of the content remains the same */}
                     <div className="absolute inset-0 bg-grid-pattern opacity-30"></div>
-                    
+
                     {/* Central financial growth chart */}
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 flex items-center justify-center"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -385,21 +385,21 @@ export default function AboutPage() {
                     >
                       <svg className="w-3/4 h-auto" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                         {/* Base line */}
-                        <line x1="40" y1="160" x2="360" y2="160" stroke="#E2E8F0" strokeWidth="2"/>
-                        
+                        <line x1="40" y1="160" x2="360" y2="160" stroke="#E2E8F0" strokeWidth="2" />
+
                         {/* Y-axis labels */}
                         <text x="30" y="160" textAnchor="end" fill="#64748B" fontSize="12">0</text>
                         <text x="30" y="120" textAnchor="end" fill="#64748B" fontSize="12">25</text>
                         <text x="30" y="80" textAnchor="end" fill="#64748B" fontSize="12">50</text>
                         <text x="30" y="40" textAnchor="end" fill="#64748B" fontSize="12">75</text>
-                        
+
                         {/* X-axis labels */}
                         <text x="40" y="175" textAnchor="middle" fill="#64748B" fontSize="12">2020</text>
                         <text x="120" y="175" textAnchor="middle" fill="#64748B" fontSize="12">2025</text>
                         <text x="200" y="175" textAnchor="middle" fill="#64748B" fontSize="12">2030</text>
                         <text x="280" y="175" textAnchor="middle" fill="#64748B" fontSize="12">2035</text>
                         <text x="360" y="175" textAnchor="middle" fill="#64748B" fontSize="12">2040</text>
-                        
+
                         {/* Animated growth line */}
                         <motion.path
                           d="M40,140 C80,130 120,100 160,90 C200,80 240,60 280,40 C320,30 360,20 360,20"
@@ -410,7 +410,7 @@ export default function AboutPage() {
                           animate={{ pathLength: 1 }}
                           transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
                         />
-                        
+
                         {/* Area under the curve */}
                         <motion.path
                           d="M40,140 C80,130 120,100 160,90 C200,80 240,60 280,40 C320,30 360,20 360,20 L360,160 L40,160 Z"
@@ -420,7 +420,7 @@ export default function AboutPage() {
                           animate={{ opacity: 0.3 }}
                           transition={{ duration: 1, delay: 2 }}
                         />
-                        
+
                         {/* Gradient definition */}
                         <defs>
                           <linearGradient id="gradientFill" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -430,7 +430,7 @@ export default function AboutPage() {
                         </defs>
                       </svg>
                     </motion.div>
-                    
+
                     {/* Animated data points */}
                     {[
                       { x: 40, y: 140, delay: 2.0, label: "Start" },
@@ -450,7 +450,7 @@ export default function AboutPage() {
                       >
                         <div className="relative">
                           <div className="w-4 h-4 rounded-full bg-primary-600 shadow-lg shadow-primary-300/50"></div>
-                          <motion.div 
+                          <motion.div
                             className="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary-700 text-white text-xs py-1 px-2 rounded whitespace-nowrap"
                             initial={{ opacity: 0, y: 10 }}
                             whileHover={{ opacity: 1, y: 0 }}
@@ -460,9 +460,9 @@ export default function AboutPage() {
                         </div>
                       </motion.div>
                     ))}
-                    
+
                     {/* Floating financial icons */}
-                    <motion.div 
+                    <motion.div
                       className="absolute top-5 right-5 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg"
                       animate={{ y: [0, -10, 0] }}
                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -471,8 +471,8 @@ export default function AboutPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </motion.div>
-                    
-                    <motion.div 
+
+                    <motion.div
                       className="absolute bottom-5 left-5 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg"
                       animate={{ y: [0, 10, 0] }}
                       transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
@@ -481,8 +481,8 @@ export default function AboutPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </motion.div>
-                    
-                    <motion.div 
+
+                    <motion.div
                       className="absolute top-1/2 left-5 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg"
                       animate={{ x: [0, 10, 0] }}
                       transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -496,23 +496,23 @@ export default function AboutPage() {
                   {/* Interactive stats cards */}
                   <div className="p-6 border-t border-gray-100">
                     <div className="grid grid-cols-3 gap-4">
-                      <motion.div 
+                      <motion.div
                         className="bg-gradient-to-br from-primary-50 to-white p-4 rounded-xl shadow-sm cursor-pointer"
                         whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.1), 0 8px 10px -6px rgba(79, 70, 229, 0.1)" }}
                       >
                         <div className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">30+</div>
                         <div className="text-sm text-gray-600">Years Experience</div>
                       </motion.div>
-                      
-                      <motion.div 
+
+                      <motion.div
                         className="bg-gradient-to-br from-primary-50 to-white p-4 rounded-xl shadow-sm cursor-pointer"
                         whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.1), 0 8px 10px -6px rgba(79, 70, 229, 0.1)" }}
                       >
                         <div className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">500+</div>
                         <div className="text-sm text-gray-600">Happy Clients</div>
                       </motion.div>
-                      
-                      <motion.div 
+
+                      <motion.div
                         className="bg-gradient-to-br from-primary-50 to-white p-4 rounded-xl shadow-sm cursor-pointer"
                         whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.1), 0 8px 10px -6px rgba(79, 70, 229, 0.1)" }}
                       >
@@ -543,7 +543,7 @@ export default function AboutPage() {
 
           {/* John Garfield Bio */}
           <div className="flex flex-col lg:flex-row items-center gap-12 mb-24">
-            <motion.div 
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -552,11 +552,11 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="absolute -top-4 -left-4 w-full h-full bg-primary-100 rounded-2xl"></div>
                 <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                  <Image 
-                    src="/images/garfield.jpg" 
-                    alt="John Garfield" 
-                    width={600} 
-                    height={700} 
+                  <Image
+                    src="/images/garfield.jpg"
+                    alt="John Garfield"
+                    width={600}
+                    height={700}
                     className="w-full object-cover"
                   />
                 </div>
@@ -564,7 +564,7 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -573,14 +573,14 @@ export default function AboutPage() {
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
                 <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">John Garfield</h3>
                 <h4 className="text-xl text-gray-700 mb-6">Founder & CEO</h4>
-                
+
                 <div className="space-y-6 text-gray-600">
                   <p>
                     John entered the financial services industry in 1989 after graduating from Embry
-                    Riddle Aeronautical University. Over the last three decades, John has been 
+                    Riddle Aeronautical University. Over the last three decades, John has been
                     considered an expert at retirement and estate planning.
                   </p>
-                  
+
                   <div>
                     <h5 className="text-lg font-semibold text-gray-800 mb-3">Education and Professional Memberships:</h5>
                     <ul className="space-y-2 list-disc pl-5">
@@ -596,9 +596,9 @@ export default function AboutPage() {
                     </ul>
                   </div>
                 </div>
-                
+
                 <div className="mt-8">
-                  <Link 
+                  <Link
                     href="/contact"
                     className="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors"
                   >
@@ -611,10 +611,10 @@ export default function AboutPage() {
               </div>
             </motion.div>
           </div>
-          
+
           {/* Jon Davis Bio - Photo on right side */}
           <div className="flex flex-col lg:flex-row-reverse items-center gap-12">
-            <motion.div 
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -623,11 +623,11 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="absolute -top-4 -right-4 w-full h-full bg-primary-100 rounded-2xl"></div>
                 <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                  <Image 
-                    src="/images/garfield.jpg" 
-                    alt="Jon Davis" 
-                    width={600} 
-                    height={700} 
+                  <Image
+                    src="/images/garfield.jpg"
+                    alt="Jon Davis"
+                    width={600}
+                    height={700}
                     className="w-full object-cover"
                   />
                 </div>
@@ -635,7 +635,7 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -644,12 +644,12 @@ export default function AboutPage() {
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
                 <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Jon Davis</h3>
                 <h4 className="text-xl text-gray-700 mb-6">Co-Founder & Managing Partner</h4>
-                
+
                 <div className="space-y-6 text-gray-600">
                   <p>
                     Jon Davis brings over 25 years of expertise in wealth management and financial planning. His strategic approach to investment management has helped countless clients build and preserve wealth through changing market conditions.
                   </p>
-                  
+
                   <div>
                     <h5 className="text-lg font-semibold text-gray-800 mb-3">Education and Professional Achievements:</h5>
                     <ul className="space-y-2 list-disc pl-5">
@@ -660,9 +660,9 @@ export default function AboutPage() {
                     </ul>
                   </div>
                 </div>
-                
+
                 <div className="mt-8">
-                  <Link 
+                  <Link
                     href="/contact"
                     className="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors"
                   >
@@ -722,7 +722,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-     
+
 
       {/* History Timeline Section */}
       <section
