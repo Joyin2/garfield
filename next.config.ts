@@ -8,9 +8,9 @@ const nextConfig = {
   },
   // Add this image configuration
   images: {
-    domains: [],
+    domains: ['lh3.googleusercontent.com'],
     // Ensure images are properly handled during build
-    unoptimized: process.env.NODE_ENV === 'development',
+    unoptimized: true,
   },
 };
 

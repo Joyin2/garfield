@@ -49,7 +49,7 @@ export default function ContactSection() {
         </svg>
       ),
       title: "Office Address",
-      details: ["Garfield and Davis", "515 West Avenue, PH65", "Norwalk, CT 06850"]
+      details: ["515 West Avenue, ", "Norwalk, CT 06850"]
     },
     {
       icon: (

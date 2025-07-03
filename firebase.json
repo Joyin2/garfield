@@ -7,17 +7,7 @@
       "**/node_modules/**"
     ],
     "frameworksBackend": {
-      "region": "us-central1"
-    },
-    "rewrites": [
-      {
-        "source": "/_next/image/**",
-        "destination": "/_next/image"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+      "region": "asia-east1"
+    }
   }
 }

@@ -7,11 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-  // Refs for dropdown menus
-  const aboutDropdownRef = useRef<HTMLDivElement>(null);
-  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,10 +19,18 @@ const Navbar = () => {
       }
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mousedown', handleClickOutside);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -46,22 +51,71 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <NavLink href="/" label="Home" />
-            
-            {/* About Dropdown - Modified to use hover */}
             <NavLink href="/about" label="About Us" />
             
-            {/* Services Dropdown - Modified to use hover */}
-            <NavLink href="/services" label="Services" />
+            {/* Services Dropdown */}
+            <div 
+              ref={servicesRef} 
+              className="relative"
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}
+            >
+              <button
+                className="flex items-center space-x-1 font-medium text-gray-800 hover:text-primary-600 transition-colors duration-300 group"
+              >
+                <span>Services</span>
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+              </button>
+
+              <AnimatePresence>
+                {isServicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 border border-gray-100"
+                  >
+                    <Link
+                      href="/services"
+                      className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors duration-200 font-medium"
+                    >
+                      Services
+                    </Link>
+                    <div className="border-t border-gray-100 my-2"></div>
+                    <Link
+                      href="/services/financial-planning"
+                      className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors duration-200"
+                    >
+                      Financial Planning
+                    </Link>
+                    <Link
+                      href="/services/wealth-planning"
+                      className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors duration-200"
+                    >
+                      Wealth Planning
+                    </Link>
+                    <Link
+                      href="/services/retirement-planning"
+                      className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors duration-200"
+                    >
+                      Retirement Planning
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             
             <NavLink href="/resources" label="Resources" />
             <NavLink href="/contact" label="Contact Us" />
-            
-            <Link
-              href="/contact"
-              className="px-5 py-2.5 bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 text-white rounded-lg font-medium shadow-md shadow-primary-200/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Get Started
-            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -99,39 +153,22 @@ const Navbar = () => {
           >
             <div className="container mx-auto px-4 py-4 space-y-4">
               <MobileNavLink href="/" label="Home" onClick={() => setIsMobileMenuOpen(false)} />
-              
-              {/* Mobile About Dropdown */}
-              <MobileDropdown 
-                title="About Us" 
-                items={[
-                  { href: "/about", label: "About Company" },
-                  { href: "/about/principals", label: "Bios of Principals" }
-                ]} 
-                onItemClick={() => setIsMobileMenuOpen(false)} 
-              />
+              <MobileNavLink href="/about" label="About Us" onClick={() => setIsMobileMenuOpen(false)} />
               
               {/* Mobile Services Dropdown */}
               <MobileDropdown 
                 title="Services" 
                 items={[
+                  { href: "/services", label: "Services" },
                   { href: "/services/financial-planning", label: "Financial Planning" },
-                  { href: "/services/retirement-planning", label: "Retirement Planning" },
-                  { href: "/services/wealth-planning", label: "Wealth Planning" }
+                  { href: "/services/wealth-planning", label: "Wealth Planning" },
+                  { href: "/services/retirement-planning", label: "Retirement Planning" }
                 ]} 
                 onItemClick={() => setIsMobileMenuOpen(false)} 
               />
               
               <MobileNavLink href="/resources" label="Resources" onClick={() => setIsMobileMenuOpen(false)} />
-              <MobileNavLink href="/news" label="Industry News" onClick={() => setIsMobileMenuOpen(false)} />
               <MobileNavLink href="/contact" label="Contact Us" onClick={() => setIsMobileMenuOpen(false)} />
-              
-              <Link
-                href="/contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-center px-5 py-3 bg-gradient-to-br from-primary-600 via-primary-500 to-primary-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300"
-              >
-                Get Started
-              </Link>
             </div>
           </motion.div>
         )}
@@ -148,18 +185,6 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
     >
       {label}
       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
-    </Link>
-  );
-};
-
-const DropdownLink = ({ href, label, onClick }: { href: string; label: string; onClick: () => void }) => {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors duration-200"
-    >
-      {label}
     </Link>
   );
 };

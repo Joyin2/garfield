@@ -3,16 +3,45 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show button when page is scrolled up to given distance
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  // Set the scroll event listener
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
+
+  // Scroll to top handler
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
   
   const footerLinks = [
     {
       title: "Services",
       links: [
         { name: "Services", href: "/services" },
-       
+        { name: "Financial Planning", href: "/services/financial-planning" },
+        { name: "Wealth Planning", href: "/services/wealth-planning" },
+        { name: "Retirement Planning", href: "/services/retirement-planning" },
       ]
     },
     {
@@ -26,6 +55,9 @@ export default function Footer() {
       title: "Resources",
       links: [
         { name: "Resources", href: "/resources" },
+        { name: "Retirement Calculator", href: "/calculators/retirement" },
+        { name: "Investment Calculator", href: "/calculators/investment" },
+        { name: "Budget Planner", href: "/calculators/budget" },
       ]
     }
   ];
@@ -40,10 +72,7 @@ export default function Footer() {
             <div className="mb-6">
               <Link href="/" className="inline-block">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-xl">G</span>
-                  </div>
-                  <div className="text-xl font-bold text-gray-800">Garfield Financial</div>
+                  <div className="text-2xl font-bold text-primary-600">Garfield Financial</div>
                 </div>
               </Link>
             </div>
@@ -59,8 +88,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <div>
-                  <p>Garfield and Davis</p>
-                  <p>515 West Avenue, PH65</p>
+                  <p>515 West Avenue, </p>
                   <p>Norwalk, CT 06850</p>
                 </div>
               </div>
@@ -109,7 +137,7 @@ export default function Footer() {
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8">
             {footerLinks.map((column, index) => (
               <div key={index}>
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">{column.title}</h3>
+                <h3 className="text-lg font-semibold text-primary-600 mb-4">{column.title}</h3>
                 <ul className="space-y-3">
                   {column.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
@@ -128,7 +156,7 @@ export default function Footer() {
           
           {/* Newsletter */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Stay Updated</h3>
+            <h3 className="text-lg font-semibold text-primary-600 mb-4">Stay Updated</h3>
             <p className="text-gray-600 mb-4">Subscribe to our newsletter for financial insights and updates.</p>
             
             <form className="space-y-3">
@@ -171,6 +199,22 @@ export default function Footer() {
             </Link>
           </div>
         </div>
+
+        {/* Go to Top Button */}
+        {isVisible && (
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            onClick={scrollToTop}
+            className="fixed bottom-16 right-8 w-12 h-12 bg-primary-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary-700 transition-colors duration-300 z-50"
+            aria-label="Go to top"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </motion.button>
+        )}
       </div>
     </footer>
   );

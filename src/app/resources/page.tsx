@@ -8,6 +8,7 @@ import CTASection from '@/components/sections/CTASection';
 
 export default function ResourcesPage() {
   const heroRef = useRef(null);
+  const contentRef = useRef(null);
   const [activeTab, setActiveTab] = useState('articles');
   const heroInView = useInView(heroRef);
   
@@ -20,8 +21,21 @@ export default function ResourcesPage() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    contentRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   // Resource articles
   const articles = [
+    {
+      title: "The 'Peak 65' Retirement Wave: Why FIAs Are Gaining Popularity",
+      description: "As record numbers of Americans reach age 65, retirees are turning to fixed index annuities for guaranteed income, principal protection and moderate growth, offering a safer alternative to bonds and stocks in today's volatile market.",
+      category: "Retirement Planning",
+      date: "May 6, 2025",
+      image: "/images/resources/fia-article.jpg",
+      link: "/resources/fia-popularity"
+    },
     {
       title: "Understanding Market Volatility",
       description: "Learn how market fluctuations affect your investments and strategies to navigate uncertain times.",
@@ -211,16 +225,28 @@ export default function ResourcesPage() {
 
               <div className="flex flex-wrap justify-center gap-4 mt-8">
                 <button
-                  onClick={() => setActiveTab('articles')}
+                  onClick={() => handleTabClick('articles')}
                   className="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
                   Educational Articles
                 </button>
                 <button
-                  onClick={() => setActiveTab('news')}
-                  className="px-8 py-4 bg-white text-primary-700 border-2 border-primary-200 rounded-full font-medium hover:bg-primary-50 transition-all duration-300"
+                  onClick={() => handleTabClick('events')}
+                  className="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  Webinars
+                </button>
+                <button
+                  onClick={() => handleTabClick('news')}
+                  className="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
                   Industry News
+                </button>
+                <button
+                  onClick={() => handleTabClick('all')}
+                  className="px-8 py-4 bg-white text-primary-700 border-2 border-primary-200 rounded-full font-medium hover:bg-primary-50 transition-all duration-300"
+                >
+                  View All
                 </button>
               </div>
             </motion.div>
@@ -247,227 +273,265 @@ export default function ResourcesPage() {
       </motion.div>
 
       {/* Main content */}
-      <section id="content" className="py-16 bg-white">
+      <section ref={contentRef} id="content" className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          {/* Tabs */}
-          <div className="flex flex-wrap justify-center mb-12 border-b border-gray-200">
-            <button
-              onClick={() => setActiveTab('articles')}
-              className={`px-6 py-3 font-medium text-lg transition-colors duration-300 relative ${
-                activeTab === 'articles' 
-                  ? 'text-primary-600' 
-                  : 'text-gray-500 hover:text-gray-800'
-              }`}
+          {/* All Content */}
+          {activeTab === 'all' && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="space-y-16"
             >
-              Educational Articles
+              {/* Educational Articles Section */}
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Educational Articles</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                  {articles.map((article, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    >
+                      <div className="p-6">
+                        <div className="flex items-center mb-2">
+                          <span className="text-xs font-semibold bg-primary-50 text-primary-700 px-2 py-1 rounded-full">{article.category}</span>
+                          <span className="text-xs text-gray-500 ml-2">{article.date}</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">{article.title}</h3>
+                        <p className="text-gray-600 mb-4">{article.description}</p>
+                        <Link href={article.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
+                          Read Article
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Webinars Section */}
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Webinars & Events</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {events.map((event, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    >
+                      <div className="p-6">
+                        <div className="flex flex-col mb-2">
+                          <span className="text-sm font-semibold text-gray-900">{event.date}</span>
+                          <span className="text-xs text-gray-500">{event.time}</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
+                        <p className="text-gray-600 mb-4">{event.description}</p>
+                        <Link href={event.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
+                          Register Now
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Industry News Section */}
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Industry News</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                  {news.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    >
+                      <div className="p-6">
+                        <div className="flex items-center mb-2">
+                          <span className="text-xs font-semibold bg-gray-100 text-gray-700 px-2 py-1 rounded-full">{item.source}</span>
+                          <span className="text-xs text-gray-500 ml-2">{item.date}</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                        <p className="text-gray-600 mb-4">{item.description}</p>
+                        <Link href={item.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
+                          Read News
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Individual Tab Content */}
+          {activeTab !== 'all' && (
+            <>
+              {/* Articles Tab Content */}
               {activeTab === 'articles' && (
-                <motion.div 
-                  layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600"
-                  initial={false}
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
+                >
+                  {articles.map((article, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    >
+                      <div className="p-6">
+                        <div className="flex items-center mb-2">
+                          <span className="text-xs font-semibold bg-primary-50 text-primary-700 px-2 py-1 rounded-full">{article.category}</span>
+                          <span className="text-xs text-gray-500 ml-2">{article.date}</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">{article.title}</h3>
+                        <p className="text-gray-600 mb-4">{article.description}</p>
+                        <Link href={article.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
+                          Read Article
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
               )}
-            </button>
-            <button
-              onClick={() => setActiveTab('news')}
-              className={`px-6 py-3 font-medium text-lg transition-colors duration-300 relative ${
-                activeTab === 'news' 
-                  ? 'text-primary-600' 
-                  : 'text-gray-500 hover:text-gray-800'
-              }`}
-            >
-              Industry News
+
+              {/* News Tab Content */}
               {activeTab === 'news' && (
-                <motion.div 
-                  layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600"
-                  initial={false}
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
+                >
+                  {news.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    >
+                      <div className="p-6">
+                        <div className="flex items-center mb-2">
+                          <span className="text-xs font-semibold bg-gray-100 text-gray-700 px-2 py-1 rounded-full">{item.source}</span>
+                          <span className="text-xs text-gray-500 ml-2">{item.date}</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                        <p className="text-gray-600 mb-4">{item.description}</p>
+                        <Link href={item.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
+                          Read News
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
               )}
-            </button>
-            <button
-              onClick={() => setActiveTab('events')}
-              className={`px-6 py-3 font-medium text-lg transition-colors duration-300 relative ${
-                activeTab === 'events' 
-                  ? 'text-primary-600' 
-                  : 'text-gray-500 hover:text-gray-800'
-              }`}
-            >
-              Webinars & Events
+
+              {/* Events Tab Content */}
               {activeTab === 'events' && (
-                <motion.div 
-                  layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-600"
-                  initial={false}
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                  {events.map((event, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    >
+                      <div className="p-6">
+                        <div className="flex flex-col mb-2">
+                          <span className="text-sm font-semibold text-gray-900">{event.date}</span>
+                          <span className="text-xs text-gray-500">{event.time}</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
+                        <p className="text-gray-600 mb-4">{event.description}</p>
+                        <Link href={event.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
+                          Register Now
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
               )}
-            </button>
-          </div>
-
-          {/* Articles Tab Content */}
-          {activeTab === 'articles' && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
-            >
-              {articles.map((article, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="relative h-48 w-full">
-                    <div className="absolute inset-0 bg-primary-100 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-primary-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center mb-2">
-                      <span className="text-xs font-semibold bg-primary-50 text-primary-700 px-2 py-1 rounded-full">{article.category}</span>
-                      <span className="text-xs text-gray-500 ml-2">{article.date}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{article.title}</h3>
-                    <p className="text-gray-600 mb-4">{article.description}</p>
-                    <Link href={article.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
-                      Read Article
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+            </>
           )}
+        </div>
+      </section>
 
-          {/* News Tab Content */}
-          {activeTab === 'news' && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
-            >
-              {news.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="relative h-48 w-full">
-                    <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center mb-2">
-                      <span className="text-xs font-semibold bg-gray-100 text-gray-700 px-2 py-1 rounded-full">{item.source}</span>
-                      <span className="text-xs text-gray-500 ml-2">{item.date}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                    <p className="text-gray-600 mb-4">{item.description}</p>
-                    <Link href={item.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
-                      Read News
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-
-          {/* Events Tab Content */}
-          {activeTab === 'events' && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {events.map((event, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="relative h-48 w-full">
-                    <div className="absolute inset-0 bg-blue-50 flex items-center justify-center">
-                      <svg className="w-12 h-12 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex flex-col mb-2">
-                      <span className="text-sm font-semibold text-gray-900">{event.date}</span>
-                      <span className="text-xs text-gray-500">{event.time}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                    <p className="text-gray-600 mb-4">{event.description}</p>
-                    <Link href={event.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
-                      Register Now
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-
-          {/* Newsletter Signup */}
+      {/* Video Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mt-20 bg-gradient-to-r from-primary-50 to-primary-100 p-10 rounded-2xl shadow-lg"
+            className="text-center mb-12"
           >
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Informed</h2>
-              <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-                Subscribe to our newsletter to receive the latest financial insights, market updates, and exclusive resources directly to your inbox.
-              </p>
-            </div>
-            
-            <div className="max-w-xl mx-auto">
-              <form className="flex flex-col md:flex-row gap-4">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  Subscribe
-                </button>
-              </form>
-              <p className="text-sm text-gray-500 mt-3 text-center md:text-left">
-                We respect your privacy. Unsubscribe at any time.
-              </p>
-            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-800 mb-6"
+            >
+              <span className="bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Featured Video</span>
+            </motion.h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Watch our latest insights on financial planning and investment strategies.
+            </p>
           </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="relative pb-[56.25%] h-0 rounded-xl overflow-hidden shadow-xl">
+              <iframe
+                src="https://player.vimeo.com/video/913010308?h=5114683805&badge=0&autopause=0&player_id=0&app_id=58479"
+                className="absolute top-0 left-0 w-full h-full"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Financial Planning Video"
+              ></iframe>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -484,7 +548,15 @@ export default function ResourcesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <div className="p-8 md:p-12 flex flex-col justify-center">
                 <span className="text-sm font-semibold text-primary-600 mb-2">Featured Resource</span>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">2023 Financial Planning Guide</h2>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-800 mb-6"
+                >
+                  <span className="bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">2023 Financial Planning Guide</span>
+                </motion.h2>
                 <p className="text-gray-600 mb-6">
                   Our comprehensive guide covers everything you need to know about financial planning in today's economic environment. From investment strategies to tax planning and retirement preparation, this guide provides actionable insights for every stage of your financial journey.
                 </p>
@@ -535,7 +607,15 @@ export default function ResourcesPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Financial Planning Tools</h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-800 mb-6"
+            >
+              <span className="bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Financial Planning Tools</span>
+            </motion.h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Explore our interactive calculators and tools to help you make informed financial decisions.
             </p>
@@ -551,7 +631,7 @@ export default function ResourcesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 ),
-                link: "/tools/retirement-calculator"
+                link: "/calculators/retirement"
               },
               {
                 title: "Investment Return Calculator",
@@ -561,7 +641,7 @@ export default function ResourcesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
                   </svg>
                 ),
-                link: "/tools/investment-calculator"
+                link: "/calculators/investment"
               },
               {
                 title: "Budget Planner",
@@ -571,7 +651,7 @@ export default function ResourcesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 ),
-                link: "/tools/budget-planner"
+                link: "/calculators/budget"
               }
             ].map((tool, index) => (
               <motion.div
@@ -597,6 +677,50 @@ export default function ResourcesPage() {
           </div>
         </div>
       </section>
+
+       {/* Newsletter Signup */}
+       <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="mt-20 bg-gradient-to-r from-primary-50 to-primary-100 p-10 rounded-2xl shadow-lg"
+      >
+        <div className="text-center mb-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-800 mb-6"
+          >
+            <span className="bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Stay Informed</span>
+          </motion.h2>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Subscribe to our newsletter to receive the latest financial insights, market updates, and exclusive resources directly to your inbox.
+          </p>
+        </div>
+        
+        <div className="max-w-xl mx-auto">
+          <form className="flex flex-col md:flex-row gap-4">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              required
+            />
+            <button
+              type="submit"
+              className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300"
+            >
+              Subscribe
+            </button>
+          </form>
+          <p className="text-sm text-gray-500 mt-3 text-center md:text-left">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </motion.div>
 
       {/* CTA Section */}
       <CTASection 

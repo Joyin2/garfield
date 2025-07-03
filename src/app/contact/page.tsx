@@ -114,12 +114,6 @@ export default function ContactPage() {
                 >
                   Contact Form
                 </a>
-                <a
-                  href="tel:+18005551234"
-                  className="px-8 py-4 bg-white text-primary-700 border-2 border-primary-200 rounded-full font-medium hover:bg-primary-50 transition-all duration-300"
-                >
-                  Call Us
-                </a>
               </div>
             </motion.div>
           </motion.div>
@@ -149,7 +143,7 @@ export default function ContactPage() {
         <ContactSection />
       </div>
       
-      <CTASection />
+      
     </div>
   );
 }

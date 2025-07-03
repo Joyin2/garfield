@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import garfieldImage from './garfield.jpg';
 
 // Custom hook for intersection observer
 function useInView(options = {}) {
@@ -254,7 +255,7 @@ export default function AboutPage() {
                   Our Mission
                 </a>
                 <a
-                  href="#team"
+                  href="#founder"
                   className="px-8 py-4 bg-white text-primary-700 border-2 border-primary-200 rounded-full font-medium hover:bg-primary-50 transition-all duration-300"
                 >
                   Meet Our Team
@@ -302,53 +303,17 @@ export default function AboutPage() {
 
               <div className="space-y-6 text-lg text-gray-600">
                 <p>
-                  At Garfield and Davis Financial, we believe that financial security is the foundation for lasting peace of mind. With a team of seasoned advisors and a client-first philosophy, we specialize in crafting tailored financial strategies that align with your life goals—whether you're planning for retirement, growing your wealth, or securing your family's future.
+                  At Garfield  Financial, we believe that financial security is the foundation for lasting peace of mind. With a team of seasoned advisors and a client-first philosophy, we specialize in crafting tailored financial strategies that align with your life goals—whether you're planning for retirement, growing your wealth, or securing your family's future.
                 </p>
                 <p>
                   Our approach blends deep market insight with personalized service, ensuring that each financial decision is rooted in both data and your unique values. More than just advisors, we are your lifelong financial partners.
                 </p>
                 <p>
-                  We take pride in building trust through transparency, integrity, and a steadfast commitment to your success. At Garfield and Davis Financial, your future isn't just a projection—it's a plan with purpose.
+                  We take pride in building trust through transparency, integrity, and a steadfast commitment to your success. At Garfield  Financial, your future isn't just a projection—it's a plan with purpose.
                 </p>
               </div>
 
-              <div className="mt-10 grid grid-cols-2 gap-6">
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <span className="font-medium text-gray-700">Personalized Planning</span>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </div>
-                  <span className="font-medium text-gray-700">Asset Protection</span>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <span className="font-medium text-gray-700">Wealth Building</span>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                    </svg>
-                  </div>
-                  <span className="font-medium text-gray-700">Global Perspective</span>
-                </div>
-              </div>
+             
             </motion.div>
 
             <motion.div
@@ -529,7 +494,7 @@ export default function AboutPage() {
       </section>
 
       {/* John Garfield Bio Section */}
-      <section className="py-24 bg-white">
+      <section id="founder" className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -553,7 +518,7 @@ export default function AboutPage() {
                 <div className="absolute -top-4 -left-4 w-full h-full bg-primary-100 rounded-2xl"></div>
                 <div className="relative overflow-hidden rounded-2xl shadow-xl">
                   <Image
-                    src="/images/garfield.jpg"
+                    src={garfieldImage}
                     alt="John Garfield"
                     width={600}
                     height={700}
@@ -563,7 +528,6 @@ export default function AboutPage() {
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary-600 rounded-full opacity-20 blur-xl"></div>
               </div>
             </motion.div>
-
             <motion.div
               className="lg:w-1/2"
               initial={{ opacity: 0, x: 30 }}
@@ -610,71 +574,7 @@ export default function AboutPage() {
                 </div>
               </div>
             </motion.div>
-          </div>
-
-          {/* Jon Davis Bio - Photo on right side */}
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-12">
-            <motion.div
-              className="lg:w-1/2"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="relative">
-                <div className="absolute -top-4 -right-4 w-full h-full bg-primary-100 rounded-2xl"></div>
-                <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                  <Image
-                    src="/images/garfield.jpg"
-                    alt="Jon Davis"
-                    width={600}
-                    height={700}
-                    className="w-full object-cover"
-                  />
-                </div>
-                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-primary-600 rounded-full opacity-20 blur-xl"></div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="lg:w-1/2"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">Jon Davis</h3>
-                <h4 className="text-xl text-gray-700 mb-6">Co-Founder & Managing Partner</h4>
-
-                <div className="space-y-6 text-gray-600">
-                  <p>
-                    Jon Davis brings over 25 years of expertise in wealth management and financial planning. His strategic approach to investment management has helped countless clients build and preserve wealth through changing market conditions.
-                  </p>
-
-                  <div>
-                    <h5 className="text-lg font-semibold text-gray-800 mb-3">Education and Professional Achievements:</h5>
-                    <ul className="space-y-2 list-disc pl-5">
-                      <li>Details to be added later</li>
-                      <li>Details to be added later</li>
-                      <li>Details to be added later</li>
-                      <li>Details to be added later</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors"
-                  >
-                    <span>Schedule a consultation</span>
-                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+          </div>          
         </div>
       </section>
 
