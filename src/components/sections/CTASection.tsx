@@ -89,7 +89,7 @@ export default function CTASection() {
             viewport={{ once: true }}
             className="text-lg md:text-xl text-gray-700 mb-10 max-w-3xl mx-auto"
           >
-            Take the first step toward financial confidence with a personalized consultation. 
+            Take the first step toward financial confidence with a personalized consultation.
             Our expert advisors are ready to help you build a strategy tailored to your unique goals.
           </motion.p>
           

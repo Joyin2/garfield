@@ -115,6 +115,7 @@ const Navbar = () => {
             </div>
             
             <NavLink href="/resources" label="Resources" />
+            <NavLink href="/blogs" label="Blogs" />
             <NavLink href="/contact" label="Contact Us" />
           </nav>
 
@@ -168,6 +169,7 @@ const Navbar = () => {
               />
               
               <MobileNavLink href="/resources" label="Resources" onClick={() => setIsMobileMenuOpen(false)} />
+              <MobileNavLink href="/blogs" label="Blogs" onClick={() => setIsMobileMenuOpen(false)} />
               <MobileNavLink href="/contact" label="Contact Us" onClick={() => setIsMobileMenuOpen(false)} />
             </div>
           </motion.div>

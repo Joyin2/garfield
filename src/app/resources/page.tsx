@@ -106,33 +106,7 @@ export default function ResourcesPage() {
     }
   ];
 
-  // Webinars and events
-  const events = [
-    {
-      title: "Preparing for Retirement: A Comprehensive Guide",
-      description: "Join our expert advisors for a deep dive into retirement preparation strategies.",
-      date: "August 15, 2023",
-      time: "2:00 PM - 3:30 PM EST",
-      image: "/images/resources/retirement-webinar.jpg",
-      link: "/events/retirement-preparation"
-    },
-    {
-      title: "Market Outlook: Q3 2023",
-      description: "Our investment team shares insights on market trends and investment opportunities.",
-      date: "July 20, 2023",
-      time: "1:00 PM - 2:00 PM EST",
-      image: "/images/resources/market-outlook.jpg",
-      link: "/events/market-outlook-q3"
-    },
-    {
-      title: "Tax Planning Strategies for High-Income Earners",
-      description: "Learn advanced tax planning techniques to minimize your tax burden.",
-      date: "July 10, 2023",
-      time: "11:00 AM - 12:30 PM EST",
-      image: "/images/resources/tax-planning.jpg",
-      link: "/events/tax-planning-high-income"
-    }
-  ];
+
 
   return (
     <div className="overflow-hidden">
@@ -231,12 +205,6 @@ export default function ResourcesPage() {
                   Educational Articles
                 </button>
                 <button
-                  onClick={() => handleTabClick('events')}
-                  className="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                >
-                  Webinars
-                </button>
-                <button
                   onClick={() => handleTabClick('news')}
                   className="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
@@ -315,37 +283,7 @@ export default function ResourcesPage() {
                 </div>
               </div>
 
-              {/* Webinars Section */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Webinars & Events</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {events.map((event, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-                    >
-                      <div className="p-6">
-                        <div className="flex flex-col mb-2">
-                          <span className="text-sm font-semibold text-gray-900">{event.date}</span>
-                          <span className="text-xs text-gray-500">{event.time}</span>
-                        </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                        <p className="text-gray-600 mb-4">{event.description}</p>
-                        <Link href={event.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
-                          Register Now
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+
 
               {/* Industry News Section */}
               <div>
@@ -456,41 +394,7 @@ export default function ResourcesPage() {
                 </motion.div>
               )}
 
-              {/* Events Tab Content */}
-              {activeTab === 'events' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                  {events.map((event, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-                    >
-                      <div className="p-6">
-                        <div className="flex flex-col mb-2">
-                          <span className="text-sm font-semibold text-gray-900">{event.date}</span>
-                          <span className="text-xs text-gray-500">{event.time}</span>
-                        </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                        <p className="text-gray-600 mb-4">{event.description}</p>
-                        <Link href={event.link} className="text-primary-600 font-medium hover:text-primary-700 transition-colors duration-300 flex items-center">
-                          Register Now
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )}
+
             </>
           )}
         </div>
