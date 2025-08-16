@@ -34,6 +34,16 @@ export default function BlogsPage() {
       readTime: "8 min read",
       image: "/images/blogs/retirement-mistakes.jpg",
       link: "/blogs/retirement-planning-mistakes"
+    },
+    {
+      title: "Estate Planning Essentials: Trusts vs. Wills — What's Right for You?",
+      description: "Navigate the complex world of estate planning with our comprehensive guide comparing wills, trusts, and powers of attorney to protect your legacy.",
+      category: "Estate Planning",
+      date: "June 15, 2025",
+      author: "John Garfield",
+      readTime: "12 min read",
+      image: "/images/blogs/estate-planning.jpg",
+      link: "/blogs/estate-planning-trusts-vs-wills"
     }
   ];
 
