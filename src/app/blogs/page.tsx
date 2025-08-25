@@ -26,6 +26,16 @@ export default function BlogsPage() {
   // Blog posts data
   const blogPosts = [
     {
+      title: "How Life Insurance Can Safeguard Your Family's Retirement Goals",
+      description: "Life insurance offers more than income protection—it can be a powerful tool in building lifelong security and a smoother transition to your heirs.",
+      category: "Life Insurance",
+      date: "August 25, 2025",
+      author: "John Garfield",
+      readTime: "10 min read",
+      image: "/images/blogs/life-insurance.jpg",
+      link: "/blogs/life-insurance-retirement-goals"
+    },
+    {
       title: "5 Common Retirement Planning Mistakes — And How to Avoid Them",
       description: "Retirement isn't a finish line — it's a new beginning. But how you prepare for it can make all the difference between financial confidence and costly surprises.",
       category: "Retirement Planning",
